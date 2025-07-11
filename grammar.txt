@@ -1,0 +1,23 @@
+# Custom Language Grammar Definition
+#
+# This document defines the formal grammar used for a custom expression-based
+# domain-specific language (DSL). The grammar supports variable assignments,
+# arithmetic expressions, conditional statements (if/then/else), and loops (while/do).
+#
+# Used as the design basis for the Python lexer and parser implementation.
+
+program           -> statement*
+statement         -> expression | if_statement | while_loop
+expression        -> variable '=' arithmetic_expression
+arithmetic_expression -> term (('+' | '-') term)*
+term              -> factor (('*' | '/') factor)*
+factor            -> number | variable | '(' arithmetic_expression ')'
+if_statement      -> 'if' condition 'then' statement ('else' statement)?
+while_loop        -> 'while' condition 'do' statement
+condition         -> arithmetic_expression ('==' | '!=' | '<' | '>' | '<=' | '>=') arithmetic_expression
+variable          -> letter (letter | digit)*
+number            -> digit+
+letter            -> 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+digit             -> '0' | '1' | ... | '9'
+
+# possible tokens = 0-9, A-Z, a-z, operators, while, if, '(', ')'

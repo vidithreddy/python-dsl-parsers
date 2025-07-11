@@ -1,0 +1,18 @@
+# Sample Program in Custom DSL
+#
+# This example demonstrates variable assignments, arithmetic expressions,
+# conditional branching (if/then/else), and nested while loops.
+#
+# Designed to be parsed by the custom lexer and parser.
+
+x = 5 + 3 + 10
+y = x + 3
+if y > 8 then
+    z = y - x
+else
+    z = y + x
+x = x / y
+x = y + x * x
+while x > 0 do
+    while y > 0 do
+        x = x - 1
