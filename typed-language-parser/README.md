@@ -1,57 +1,71 @@
-# custom-language-parser
+# typed-language-parser
 
-# Custom DSL Parser in Python
+# Typed DSL Parser in Python
 
-This project implements a complete lexer and recursive-descent parser for a custom-designed domain-specific language (DSL). The language supports variable assignments, arithmetic expressions, conditional branching (`if/then/else`), and nested loops (`while/do`).
+This project implements a complete lexer and recursive-descent parser for a custom-designed, **typed** domain-specific language (DSL). The language supports variable declarations with types, block scoping with braces, arithmetic expressions, conditional branching (`if/then/else`), and nested loops (`while/do`).
 
-The parser converts source code written in this DSL into a canonical abstract syntax tree (AST) representation, demonstrating language design, parsing techniques, and test-driven development in Python.
+The parser enforces type checking (e.g., int vs. float) and scope rules to prevent invalid redeclarations and use-before-declare errors. It builds a structured abstract syntax tree (AST) with custom Node classes.
 
 ---
 
 ## Features
 
-- Tokenization with a custom **Lexer**
-- Recursive-descent **Parser** producing canonical ASTs
-- Supports:
-  - Variable assignments
-  - Arithmetic expressions (+, -, *, /)
-  - Conditional expressions with comparison operators
-  - `if/then/else` branching
-  - `while/do` loops (including nesting)
-- Well-defined **grammar specification**
-- Includes **unit tests** validating AST output
+- Tokenization with a custom **Lexer**:
+  - Supports integers, floats
+  - Operators (+, -, *, /, comparison)
+  - Keywords (if, then, else, while, do, int, float)
+  - Block scoping with braces
 
----
+- Recursive-descent **Parser** producing a typed AST:
+  - Variable declarations with type enforcement
+  - Assignments
+  - Conditional expressions with comparison
+  - Nested `if`/`else` and `while` blocks with proper scoping
+  - Type checking between variables and expressions
 
-## Grammar Specification
+- **Symbol Table**:
+  - Enforces block scoping
+  - Tracks declared variables and their types
+  - Prevents redeclaration in same scope
 
-See [`grammar.txt`](./grammar.txt) for the complete formal grammar definition.  
+- **Error Reporting**:
+  - Detailed messages for:
+    - Type mismatches
+    - Use-before-declare
+    - Redeclaration errors
 
-Example excerpt:
-statement -> expression | if_statement | while_loop
-expression -> variable '=' arithmetic_expression
-arithmetic_expression -> term (('+' | '-') term)*
+- Well-defined **grammar specification** (see [grammar.txt](./grammar.txt))
 
-## Project File Structure
-
-custom-language-parser<br />
-    ├── parser.py<br />
-    ├── grammar.txt<br />
-    ├── example.txt<br />
-    └── tests<br />
-        └── test_parser.py<br />
+- **Unit tests** validating parser correctness and rule enforcement
 
 ---
 
 ## Purpose
 
-This project was built to practice language design, formal grammar specification, and implementing a complete parsing pipeline in Python.
+This project demonstrates:
 
-It demonstrates how to:
-- Define a custom domain-specific language (DSL) with a formal grammar.
-- Implement a **Lexer** to tokenize source code.
-- Use recursive-descent parsing to produce a canonical AST.
-- Support real programming constructs like assignments, arithmetic expressions, conditionals, and loops.
-- Write clean, testable, and modular Python code following professional standards.
+- Building a custom typed programming language's grammar
+- Implementing a robust Lexer and recursive-descent Parser in Python
+- Enforcing static type checking and block scoping rules
+- Designing and using an Abstract Syntax Tree (AST)
+- Writing clear, maintainable, modular code with professional standards
+
+It serves as a practical example of compiler front-end design, type systems, and language parsing.
 
 ---
+
+## Grammar Specification
+
+See [`grammar.txt`](./grammar.txt) for the full formal grammar.  
+
+Example excerpt:
+declaration -> type variable '=' arithmetic_expression
+if_statement -> 'if' condition 'then' '{' statement* '}' ('else' '{' statement* '}')?
+
+---
+
+## Project Structure
+typed-language-parser<br />
+├── parser.py # Lexer and Parser implementation with AST and type checking<br />
+├── test_parser.py # Unit tests validating parser rules<br />
+└── grammar.txt # Formal grammar definition<br />

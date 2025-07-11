@@ -1,57 +1,86 @@
-# custom-language-parser
+# python-dsl-parser
 
-# Custom DSL Parser in Python
+# Python DSL Parsers
 
-This project implements a complete lexer and recursive-descent parser for a custom-designed domain-specific language (DSL). The language supports variable assignments, arithmetic expressions, conditional branching (`if/then/else`), and nested loops (`while/do`).
+This repository showcases two custom-designed **domain-specific language (DSL) parsers** implemented in Python. Each project demonstrates progressively advanced parsing techniques, from a simple untyped DSL to a typed language with static type checking and block scoping.
 
-The parser converts source code written in this DSL into a canonical abstract syntax tree (AST) representation, demonstrating language design, parsing techniques, and test-driven development in Python.
+These projects highlight my ability to design grammars, implement lexers and recursive-descent parsers, enforce scoping rules, and build abstract syntax trees (ASTs) in Python.
 
 ---
 
-## Features
+## Projects Included
 
-- Tokenization with a custom **Lexer**
+### 1. custom-language-parser
+
+A basic untyped DSL parser that supports:
+
+- Variable assignments
+- Arithmetic expressions (+, -, *, /)
+- Conditional expressions with comparison operators
+- `if/then/else` branching
+- `while/do` loops (including nesting)
+
+Features:
+
+- Custom **Lexer** for tokenization
 - Recursive-descent **Parser** producing canonical ASTs
-- Supports:
-  - Variable assignments
-  - Arithmetic expressions (+, -, *, /)
-  - Conditional expressions with comparison operators
-  - `if/then/else` branching
-  - `while/do` loops (including nesting)
-- Well-defined **grammar specification**
-- Includes **unit tests** validating AST output
+- Clean, modular design
+- Test suite validating AST output
+
+**Folder:** [custom-language-parser/](./custom-language-parser/)
 
 ---
 
-## Grammar Specification
+### 2. typed-language-parser
 
-See [`grammar.txt`](./grammar.txt) for the complete formal grammar definition.  
+A more advanced DSL parser with:
 
-Example excerpt:
-statement -> expression | if_statement | while_loop
-expression -> variable '=' arithmetic_expression
-arithmetic_expression -> term (('+' | '-') term)*
+- **Typed variable declarations** (int, float)
+- Block scoping using braces `{ }`
+- Type checking (e.g., preventing int/float mismatches)
+- Symbol tables enforcing declaration-before-use
+- Nested `if/then/else` and `while/do` constructs with proper scoping
 
-## Project File Structure
+Features:
 
-custom-language-parser<br />
-    ├── parser.py<br />
-    ├── grammar.txt<br />
-    ├── example.txt<br />
-    └── tests<br />
-        └── test_parser.py<br />
+- Custom **Lexer** supporting numbers, floats, operators, braces
+- Recursive-descent **Parser** building a typed AST
+- Enforces static type checking and scoping rules
+- Detailed error reporting
+- Comprehensive test suite
+
+**Folder:** [typed-language-parser/](./typed-language-parser/)
 
 ---
+
+## Skills Demonstrated
+
+- Formal grammar design and specification  
+- Lexer and recursive-descent parser implementation in Python  
+- AST construction with custom Node classes  
+- Static type checking and error reporting  
+- Block scoping with symbol table management  
+- Clean, modular, professional code design  
+- Test-driven development practices  
+
+---
+
+## Folder Structure
+
+python-dsl-parsers/<br />
+├── custom-language-parser/<br />
+│ ├── parser.py<br />
+│ ├── test_parser.py<br />
+│ ├── grammar.txt<br />
+│ └── README.md<br />
+└── typed-language-parser/<br />
+  ├── parser.py<br />
+  ├── test_parser.py<br />
+  ├── grammar.txt<br />
+  └── README.md<br />
+
 
 ## Purpose
+This repository showcases two custom-designed **domain-specific language (DSL) parsers** implemented in Python. Each project demonstrates progressively advanced parsing techniques, from a simple untyped DSL to a typed language with static type checking and block scoping.
 
-This project was built to practice language design, formal grammar specification, and implementing a complete parsing pipeline in Python.
-
-It demonstrates how to:
-- Define a custom domain-specific language (DSL) with a formal grammar.
-- Implement a **Lexer** to tokenize source code.
-- Use recursive-descent parsing to produce a canonical AST.
-- Support real programming constructs like assignments, arithmetic expressions, conditionals, and loops.
-- Write clean, testable, and modular Python code following professional standards.
-
----
+These projects highlight my ability to design grammars, implement lexers and recursive-descent parsers, enforce scoping rules, and build abstract syntax trees (ASTs) in Python.
